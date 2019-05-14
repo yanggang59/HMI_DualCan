@@ -65,7 +65,10 @@ myWidget::myWidget(QWidget *parent) :
 
     conflag = ui->tabWidget->currentIndex();
 
-    set_bitrate();
+    can0_set_bitrate();
+
+    can1_set_bitrate();
+
     //开启接收数据的线程
     can0RecvThread = new Thread0;
     can0RecvThread->start();

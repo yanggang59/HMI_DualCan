@@ -39,7 +39,9 @@ extern int can1_recv(can_frame frame[]);
 extern void can0_send(QByteArray data,int id);    //can0 send
 extern void can1_send(QByteArray data ,int id);  //can1 send
 
-extern void set_bitrate(void);
+extern void can0_set_bitrate(void);
+
+extern void can1_set_bitrate(void);
 
 #endif // CAN_RECV_SEND
 

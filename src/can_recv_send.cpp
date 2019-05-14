@@ -2,9 +2,14 @@
 
 #include <QMutex>       //线程加锁保护
 
-#define CAN_BITRATE "/sbin/ip link set can0 type can bitrate 250000"
-#define CAN_OPEN "ifconfig can0 up"
-#define CAN_CLOSE "ifconfig can0 down"
+#define CAN0_BITRATE "/sbin/ip link set can0 up type can bitrate 250000"
+#define CAN0_OPEN "/sbin/ip link set can0 up"
+#define CAN0_CLOSE "/sbin/ip link set can0 down"
+
+#define CAN1_BITRATE "/sbin/ip link set can1 up type can bitrate 250000"
+#define CAN1_OPEN "/sbin/ip link set can1 up"
+#define CAN1_CLOSE "/sbin/ip link set can1 down"
+
 
 
 QMutex mutex;
@@ -13,15 +18,23 @@ int j = 0;              //返回数据
 int sum = 1;
 int sum_right = 1;
 
-void set_bitrate(void)
+void can0_set_bitrate(void)
 {     //设置波特率
-    system(CAN_CLOSE);
-    system(CAN_BITRATE);
-    system(CAN_OPEN);
+    system(CAN0_CLOSE);
+    system(CAN0_BITRATE);
+    system(CAN0_OPEN);
 }
 
+void can1_set_bitrate(void)
+{     //设置波特率
+    system(CAN1_CLOSE);
+    system(CAN1_BITRATE);
+    system(CAN1_OPEN);
+}
+
+
+
 //can0 ----12
-//
 int can0_recv(struct can_frame frame[])
 {
     /* can通信的初始化 */
@@ -40,8 +53,10 @@ int can0_recv(struct can_frame frame[])
     strncpy(ifr.ifr_name, "can0", sizeof(ifr.ifr_name)-1);
     ifr.ifr_name[sizeof(ifr.ifr_name)-1] = '\0';
     ioctl(s, SIOCGIFINDEX, &ifr);	//指定can0设备
+
     addr.can_family = AF_CAN;	//这两行必须有
-    addr.can_ifindex =0;
+    addr.can_ifindex = ifr.ifr_ifindex;
+
     if((bind(s, (struct sockaddr *)&addr, sizeof(addr))) < 0)       //绑定
     {
      perror("Error in socket bind");
@@ -74,9 +89,18 @@ int can0_recv(struct can_frame frame[])
     rfilter[10].can_mask = CAN_EFF_MASK;
     rfilter[11].can_id = 0x18FEEF00;                     //发动机油压力----29
     rfilter[11].can_mask = CAN_EFF_MASK;
+
     setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, &rfilter, sizeof(rfilter));	//设置过滤规则
-    nbytes = read(s, frame, sizeof(*frame));
+
+
+    //nbytes = read(s, frame, sizeof(*frame));
+
+    socklen_t len = sizeof(addr);
+
+    nbytes = recvfrom(s,frame,sizeof(struct can_frame),0,(struct sockaddr*)&addr,&len);
+
     close(s);
+
     return(nbytes);
 }
 
@@ -84,11 +108,11 @@ int can0_recv(struct can_frame frame[])
 //can1 ---18
 int can1_recv(struct can_frame frame[])
 {
-    /* can通信的初始化 */
+    /* can 通信的初始化 */
     int s=0;
     //int loopback = 0;	//本地回环，现在还不明白
     unsigned long nbytes = 0;
-    struct sockaddr_can addr;	//canl
+    struct sockaddr_can addr;	//can1
     struct ifreq ifr;	//
     struct can_filter rfilter[18];	//过滤规则的结构体
 
@@ -101,10 +125,10 @@ int can1_recv(struct can_frame frame[])
 
     ifr.ifr_name[sizeof(ifr.ifr_name)-1] = '\0';
 
-    ioctl(s, SIOCGIFINDEX, &ifr);	//指定can0设备
+    ioctl(s, SIOCGIFINDEX, &ifr);	//指定can1设备
 
     addr.can_family = AF_CAN;	//这两行必须有
-    addr.can_ifindex =0;
+    addr.can_ifindex = ifr.ifr_ifindex;
 
     if((bind(s, (struct sockaddr *)&addr, sizeof(addr))) < 0)       //绑定
     {
@@ -151,9 +175,14 @@ int can1_recv(struct can_frame frame[])
     rfilter[16].can_mask = CAN_EFF_MASK;
     rfilter[17].can_id = 0x18FF2815;                    //拨禾轮液压马达进油压力的低高值----27
     rfilter[17].can_mask = CAN_EFF_MASK;
+
     setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, &rfilter, sizeof(rfilter));	//设置过滤规则
 
-    nbytes = read(s, frame, sizeof(*frame));
+    //nbytes = read(s, frame, sizeof(*frame));
+
+    socklen_t len = sizeof(addr);
+
+    nbytes = recvfrom(s,frame,sizeof(struct can_frame),0,(struct sockaddr*)&addr,&len);
 
     close(s);
 
@@ -227,7 +256,11 @@ void can1_send(QByteArray data ,int id)
     }
 
     setsockopt(s, SOL_CAN_RAW, CAN_RAW_FILTER, NULL, 0);
+
+
     nbytes = write(s, &frame, sizeof(frame));
+
+
     close(s);
 
 }

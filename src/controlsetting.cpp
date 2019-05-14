@@ -41,6 +41,7 @@ void ControlSetting::InitValue()
     }
 
     timer_500ms=new QTimer(this);
+
     timer_1000ms=new QTimer(this);
 
     isSendValid = false;

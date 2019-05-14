@@ -350,6 +350,7 @@ void ThreadBack::run()
     if(flag_send_setting)
     {
         emit settingpara1(dataArray130);
+
         emit settingpara2(dataArray230);
 
         array = arr12;
