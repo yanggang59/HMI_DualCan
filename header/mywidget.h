@@ -113,10 +113,8 @@ private:
 
     /* 线程对象的定义*/
     Thread0 *can0RecvThread;
+
     Thread1 *can1RecvThread;
-
-
-    ThreadBack *reThreadBack;
 
     ControlSetting *cs;
     ParameterSetting *ps;

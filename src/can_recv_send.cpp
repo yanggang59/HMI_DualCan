@@ -2,37 +2,35 @@
 
 #include <QMutex>       //线程加锁保护
 
-#define CAN0_BITRATE "/sbin/ip link set can0 up type can bitrate 250000"
-#define CAN0_OPEN "/sbin/ip link set can0 up"
-#define CAN0_CLOSE "/sbin/ip link set can0 down"
-
-#define CAN1_BITRATE "/sbin/ip link set can1 up type can bitrate 250000"
-#define CAN1_OPEN "/sbin/ip link set can1 up"
-#define CAN1_CLOSE "/sbin/ip link set can1 down"
-
-
-
 QMutex mutex;
 
 int j = 0;              //返回数据
 int sum = 1;
 int sum_right = 1;
 
-void can0_set_bitrate(void)
-{     //设置波特率
+
+//设置can0波特率,打开can0接口
+static void can0_set_bitrate(void)
+{
     system(CAN0_CLOSE);
     system(CAN0_BITRATE);
     system(CAN0_OPEN);
 }
 
-void can1_set_bitrate(void)
-{     //设置波特率
+//设置can1波特率,打开can1接口
+static void can1_set_bitrate(void)
+{
     system(CAN1_CLOSE);
     system(CAN1_BITRATE);
     system(CAN1_OPEN);
 }
 
-
+//can 初始化
+void can_init()
+{
+    can0_set_bitrate();
+    can1_set_bitrate();
+}
 
 //can0 ----12
 int can0_recv(struct can_frame frame[])

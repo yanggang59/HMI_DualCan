@@ -1,16 +1,9 @@
-//20170913
-1¡¢×ÜÏßËùÓÐÊÕ·¢Êý¾Ý²¢ÇÐ»»Ò³ÃæµÄ²âÊÔ¡£
-2¡¢¶àÏß³Ì½ÓÊÕÊý¾Ý¡£
-3¡¢CAN×ÜÏß½ÓÊÕ³ÌÐòÓÐËù¸Ä½ø£¬´òÓ¡×ÜÏßÍ¨Ñ¶µÄ´íÎóÐÅÏ¢ÒÔ¼°×ÜÏßÍ¨Ñ¶×ÜÖ¡Êý¡£
-4¡¢2413µÄid¸ù¾Ý¶«ÄÏ´óÑ§µÄ¸ÄÁË¡£
-5¡¢idÐ­Òé¸ù¾Ý×îÐÂµÄ¾ÀÕýÁË¡£
-6¡¢³ÌÐòÓÐËùÓÅ»¯£¬ emitÐÅºÅÊ±ÑÓÊ±±¾À´ÊÇ1s£¬¸ÄÎª1ms¡£
+2019å¹´ï¼•æœˆ14æ—¥ä½¿ç”¨åŒcanå£
 
-
-//20170930
-1¡¢ÐÞ¸ÄÂË²¨Æ÷£¬Ö®Ç°µÄÂË²¨Æ÷´óÓÚ18¸ö£¬Òò´ËÏàµ±ÓÚÂË²¨Æ÷²¢Ã»ÓÐÊ¹ÓÃ¡£ÏÖÔÚ¸ÄÁËÖ»½ÓÊÕÐèÒªÓÃµÄidÁË£»
-2¡¢½ÓÊÕµÄÊý¾Ý1s¸üÐÂÒ»´Î£¬²¢ÇÒÖ»¸üÐÂµ±Ç°Ò³ÃæµÄÊý¾Ý¡£
-
-
-//20171106
-1¡¢Ìí¼ÓÊý¾Ý¿â´æ´¢³ÌÐò¡£
+ï¼ï¼Žåœ¨can_recv_send.hå’Œcan_recv_send.cppä¸­å®šä¹‰äº†canåˆå§‹åŒ–å‡½æ•°can_init()ï¼Œä½œç”¨æ˜¯è¿›è¡Œæ³¢ç‰¹çŽ‡è®¾ç½®å’Œæ‰“å¼€canå£
+    åœ¨ä½¿ç”¨å‰éœ€æ³¨æ„
+    (1)æ›¿æ¢å±å¹•çš„/sbinç›®å½•ä¸‹çš„ipæ–‡ä»¶ï¼ŒåŽŸipæ–‡ä»¶æ˜¯/bin/busyboxçš„è½¯é“¾æŽ¥
+    (2)æ³¨æ„æ­¤æ—¶çš„canå£çš„æ‰“å¼€ã€å…³é—­ä»¥åŠæ³¢ç‰¹çŽ‡è®¾ç½®å‡éœ€è¦ä½¿ç”¨ipå‘½ä»¤æ¥å®Œæˆ
+ï¼‘ï¼Žcan0 å’Œã€€can1 çš„æŽ¥æ”¶å’Œå‘é€æ•°æ®å‡½æ•°çš„å®šä¹‰åœ¨can_recv_send.hå’Œcan_recv_send.cppä¸­å®šä¹‰
+ï¼’ï¼Žåœ¨thread.hå’Œthraed.cppä¸­å®šä¹‰äº†ä¸¤ä¸ªçº¿ç¨‹åˆ†åˆ«ç”¨æ¥è´Ÿè´£can0å’Œcan1çš„æŽ¥æ”¶æ•°æ®
+ï¼“ï¼Žå‘é€æ•°æ®æ”¾åœ¨ä¸»çº¿ç¨‹ä¸­å®Œæˆï¼Œåœ¨controlsetting.hå’Œcontrolsetting.cppä¸­

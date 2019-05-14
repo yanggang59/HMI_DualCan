@@ -65,20 +65,15 @@ myWidget::myWidget(QWidget *parent) :
 
     conflag = ui->tabWidget->currentIndex();
 
-    can0_set_bitrate();
+    //can初始化，主要用来设置波特率和打开can接口,
+    can_init();
 
-    can1_set_bitrate();
-
-    //开启接收数据的线程
+    //开启 can0 can1接收数据的线程
     can0RecvThread = new Thread0;
     can0RecvThread->start();
 
     can1RecvThread = new Thread1;
     can1RecvThread->start();
-
-    //开启返回数据的线程
-    reThreadBack = new ThreadBack;
-    reThreadBack->start();
 
 }
 
@@ -211,7 +206,6 @@ void myWidget::close_sys(){
     if(ret == QMessageBox::Yes){
         can0RecvThread->terminate();
         can1RecvThread->terminate();
-        reThreadBack->terminate();
         this->close();
     }
 }

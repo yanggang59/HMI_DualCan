@@ -71,35 +71,4 @@ private slots:
     void warnFun_slot();
 
 };
-
-/* 发送数据的线程 */
-class ThreadBack: public QThread
-{
-	Q_OBJECT
-public:
-	ThreadBack();
-	void stop();
-	
-		
-public slots:
-	
-		
-signals:
-    void settingpara1(char *);
-    void settingpara2(char *);
-    void set_arr(QByteArray array);
-
-protected:
-	virtual void run();
-	
-private:
-	QTimer *send_timer;
-	volatile bool stopped;
-
-private slots:
-	void can_return();
-	void canTest(QByteArray bArray);
-
-};
-
-#endif //THREAD_H
+#endif // THREAD

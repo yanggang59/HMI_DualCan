@@ -33,15 +33,24 @@
     #define CAN_EFF_FLAG 0x80000000U	//扩展帧的标识
 #endif
 
+#define CAN0_BITRATE "/sbin/ip link set can0 up type can bitrate 250000"
+#define CAN0_OPEN "/sbin/ip link set can0 up"
+#define CAN0_CLOSE "/sbin/ip link set can0 down"
+
+#define CAN1_BITRATE "/sbin/ip link set can1 up type can bitrate 250000"
+#define CAN1_OPEN "/sbin/ip link set can1 up"
+#define CAN1_CLOSE "/sbin/ip link set can1 down"
+
+
+extern void can_init();
+
 extern int can0_recv(can_frame frame[]);
 extern int can1_recv(can_frame frame[]);
 
 extern void can0_send(QByteArray data,int id);    //can0 send
 extern void can1_send(QByteArray data ,int id);  //can1 send
 
-extern void can0_set_bitrate(void);
 
-extern void can1_set_bitrate(void);
 
 #endif // CAN_RECV_SEND
 
