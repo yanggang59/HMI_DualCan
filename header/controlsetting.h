@@ -38,7 +38,7 @@ private:
     QTimer *timer_500ms;      //500 ms timer
     QTimer *timer_1000ms;     //1000 ms timer
 
-    QSettings* testConfig;
+    //QSettings* testConfig;
 
     bool isSendValid;
 

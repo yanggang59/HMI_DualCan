@@ -46,10 +46,6 @@ void ControlSetting::InitValue()
     timer_500ms=new QTimer(this);
     timer_1000ms=new QTimer(this);
 
-    //ini file
-    testConfig = new QSettings("/mnt/wecon/app/usr/bin/config.ini",QSettings::IniFormat);
-
-
     isSendValid = false;
 }
 
@@ -255,6 +251,7 @@ void ControlSetting::sendPer1000ms()
 
 void ControlSetting::saveConfig()
 {
+    QSettings testConfig("/mnt/wecon/app/usr/bin/config.ini",QSettings::IniFormat);
 
     /*--------------------------Combox------------------------*/
     int clear_meter ;
@@ -276,11 +273,11 @@ void ControlSetting::saveConfig()
     else if (ui->cbx_3->currentIndex() == 2)    reset_cutheight = 2;        //割台下降
     else                                        reset_cutheight = 3;        //未定义
 
-    if(ui->cbx_1->currentIndex() == 0)          control_unloader = 4;       //停止
-    else if (ui->cbx_1->currentIndex() == 1)    control_unloader = 5;       //动态展开
-    else if (ui->cbx_1->currentIndex() == 2)    control_unloader = 6;       //静态展开
-    else if (ui->cbx_1->currentIndex() == 3)    control_unloader = 7;       //收回
-    else                                        control_unloader = 0;       //无动作
+    if(ui->cbx_1->currentIndex() == 0)          control_unloader = 0;       //停止
+    else if (ui->cbx_1->currentIndex() == 1)    control_unloader = 1;       //动态展开
+    else if (ui->cbx_1->currentIndex() == 2)    control_unloader = 2;       //静态展开
+    else if (ui->cbx_1->currentIndex() == 3)    control_unloader = 3;       //收回
+    else                                        control_unloader = 4;       //无动作
 
     if(ui->cbx_5->currentIndex() == 0)          auto_loader = 0;            //关闭负荷自动调节
     else if (ui->cbx_5->currentIndex() == 1)    auto_loader = 1;            //开启负荷自动调节
@@ -330,52 +327,56 @@ void ControlSetting::saveConfig()
     int ConcaveclClearanceSetMin = ui->l_ConcaveclSetMin->text().toInt(); //凹板间隙下限
 
 
-    testConfig->beginGroup("Combox");
-    testConfig->setValue("clear_meter", clear_meter);
-    testConfig->setValue("reset_cutheight", reset_cutheight);
-    testConfig->setValue("control_unloader", control_unloader);
-    testConfig->setValue("auto_loader", auto_loader);
-    testConfig->setValue("auto_cutheight", auto_cutheight);
-    testConfig->setValue("reset_weight", reset_weight);
-    testConfig->setValue("playAlarm", playAlarm);
-    testConfig->setValue("cuttermode", cuttermode);
-    testConfig->setValue("grainkd", grainkd);
-    testConfig->setValue("isOnline", isOnline);
-    testConfig->endGroup();
+    testConfig.beginGroup("Combox");
+    testConfig.setValue("clear_meter", clear_meter);
+    testConfig.setValue("reset_cutheight", reset_cutheight);
+    testConfig.setValue("control_unloader", control_unloader);
+    testConfig.setValue("auto_loader", auto_loader);
+    testConfig.setValue("auto_cutheight", auto_cutheight);
+    testConfig.setValue("reset_weight", reset_weight);
+    testConfig.setValue("playAlarm", playAlarm);
+    testConfig.setValue("cuttermode", cuttermode);
+    testConfig.setValue("grainkd", grainkd);
+    testConfig.setValue("isOnline", isOnline);
+    testConfig.endGroup();
 
 
-    testConfig->beginGroup("EditText");
-    testConfig->setValue("StalkMoisture", StalkMoisture);
-    testConfig->setValue("CroppingIntensity", CroppingIntensity);
-    testConfig->setValue("GrassGrainRatio", GrassGrainRatio);
-    testConfig->setValue("AxialRollerSpeedMin", AxialRollerSpeedMin);
-    testConfig->setValue("AxialRollerSpeedMax", AxialRollerSpeedMax);
-    testConfig->setValue("le", le);
-    testConfig->setValue("pfh", pfh);
-    testConfig->setValue("cutx", cutx);
-    testConfig->setValue("cutn", cutn);
-    testConfig->setValue("rsls", rsls);
-    testConfig->setValue("PlantHeight", PlantHeight);
-    testConfig->setValue("concaveclset", concaveclset);
-    testConfig->setValue("ConcaveclClearanceSetMax", ConcaveclClearanceSetMax);
-    testConfig->setValue("ConcaveclClearanceSetMin", ConcaveclClearanceSetMin);
-    testConfig->endGroup();
+    testConfig.beginGroup("EditText");
+    testConfig.setValue("StalkMoisture", StalkMoisture);
+    testConfig.setValue("CroppingIntensity", CroppingIntensity);
+    testConfig.setValue("GrassGrainRatio", GrassGrainRatio);
+    testConfig.setValue("AxialRollerSpeedMin", AxialRollerSpeedMin);
+    testConfig.setValue("AxialRollerSpeedMax", AxialRollerSpeedMax);
+    testConfig.setValue("le", le);
+    testConfig.setValue("pfh", pfh);
+    testConfig.setValue("cutx", cutx);
+    testConfig.setValue("cutn", cutn);
+    testConfig.setValue("rsls", rsls);
+    testConfig.setValue("PlantHeight", PlantHeight);
+    testConfig.setValue("concaveclset", concaveclset);
+    testConfig.setValue("ConcaveclClearanceSetMax", ConcaveclClearanceSetMax);
+    testConfig.setValue("ConcaveclClearanceSetMin", ConcaveclClearanceSetMin);
+    testConfig.endGroup();
+
+    return;
 
 }
 
 void ControlSetting::resumeConfig()
 {
+    QSettings testConfig("/mnt/wecon/app/usr/bin/config.ini",QSettings::IniFormat);
+
     /*Combox*/
-    int clear_meter = testConfig->value("Combox/clear_meter").toString().toInt();
-    int reset_cutheight = testConfig->value("Combox/reset_cutheight").toString().toInt();
-    int control_unloader = testConfig->value("Combox/control_unloader").toString().toInt();
-    int auto_loader = testConfig->value("Combox/auto_loader").toString().toInt();
-    int auto_cutheight = testConfig->value("Combox/auto_cutheight").toString().toInt();
-    int reset_weight = testConfig->value("Combox/reset_weight").toString().toInt();
-    int playAlarm = testConfig->value("Combox/playAlarm").toString().toInt();
-    int cuttermode = testConfig->value("Combox/cuttermode").toString().toInt();
-    int grainkd = testConfig->value("Combox/grainkd").toString().toInt();
-    int isOnline = testConfig->value("Combox/isOnline").toString().toInt();
+    int clear_meter = testConfig.value("Combox/clear_meter").toString().toInt();
+    int reset_cutheight = testConfig.value("Combox/reset_cutheight").toString().toInt();
+    int control_unloader = testConfig.value("Combox/control_unloader").toString().toInt();
+    int auto_loader = testConfig.value("Combox/auto_loader").toString().toInt();
+    int auto_cutheight = testConfig.value("Combox/auto_cutheight").toString().toInt();
+    int reset_weight = testConfig.value("Combox/reset_weight").toString().toInt();
+    int playAlarm = testConfig.value("Combox/playAlarm").toString().toInt();
+    int cuttermode = testConfig.value("Combox/cuttermode").toString().toInt();
+    int grainkd = testConfig.value("Combox/grainkd").toString().toInt();
+    int isOnline = testConfig.value("Combox/isOnline").toString().toInt();
 
     ui->cbx_4->setCurrentIndex(clear_meter);
     ui->cbx_3->setCurrentIndex(reset_cutheight);
@@ -391,41 +392,27 @@ void ControlSetting::resumeConfig()
 
     /*--------------------------EditText------------------------*/
     //actually float
-    int StalkMoisture = testConfig->value("EditText/StalkMoisture").toString().toInt();//茎干含水率设置值
-    int CroppingIntensity = testConfig->value("EditText/CroppingIntensity").toString().toInt();//作物密度设置值
+    int StalkMoisture = testConfig.value("EditText/StalkMoisture").toString().toInt();//茎干含水率设置值
+    int CroppingIntensity = testConfig.value("EditText/CroppingIntensity").toString().toInt();//作物密度设置值
 
     //int
-    int GrassGrainRatio = testConfig->value("EditText/GrassGrainRatio").toString().toInt();       //草谷比设置值
-    int PlantHeight = testConfig->value("EditText/PlantHeight").toString().toInt();                //农作物高度设置值
-    int AxialRollerSpeedMin = testConfig->value("EditText/AxialRollerSpeedMin").toString().toInt(); //轴流滚筒转速下限设置值
-    int AxialRollerSpeedMax = testConfig->value("EditText/AxialRollerSpeedMax").toString().toInt(); //轴流滚筒转速上限设置值
+    int GrassGrainRatio = testConfig.value("EditText/GrassGrainRatio").toString().toInt();       //草谷比设置值
+    int PlantHeight = testConfig.value("EditText/PlantHeight").toString().toInt();                //农作物高度设置值
+    int AxialRollerSpeedMin = testConfig.value("EditText/AxialRollerSpeedMin").toString().toInt(); //轴流滚筒转速下限设置值
+    int AxialRollerSpeedMax = testConfig.value("EditText/AxialRollerSpeedMax").toString().toInt(); //轴流滚筒转速上限设置值
 
     //actually float
-    int le = testConfig->value("EditText/le").toString().toInt();  //千粒重设置值
+    int le = testConfig.value("EditText/le").toString().toInt();  //千粒重设置值
 
     //int
-    int pfh = testConfig->value("EditText/pfh").toString().toInt();          //仿形高度设置值
-    int cutx = testConfig->value("EditText/cutx").toString().toInt();    //割台返回高度上限
-    int cutn = testConfig->value("EditText/cutn").toString().toInt();    //割台返回高度下限
-    int rsls = testConfig->value("EditText/rsls").toString().toInt();                    //轴流滚筒堵塞转速低报警设置值
-    int concaveclset = testConfig->value("EditText/concaveclset").toString().toInt();    //凹版间隙调节值
-    int ConcaveclClearanceSetMax = testConfig->value("EditText/ConcaveclClearanceSetMax").toString().toInt(); //凹板间隙上限
-    int ConcaveclClearanceSetMin = testConfig->value("EditText/ConcaveclClearanceSetMin").toString().toInt(); //凹板间隙下限
+    int pfh = testConfig.value("EditText/pfh").toString().toInt();          //仿形高度设置值
+    int cutx = testConfig.value("EditText/cutx").toString().toInt();    //割台返回高度上限
+    int cutn = testConfig.value("EditText/cutn").toString().toInt();    //割台返回高度下限
+    int rsls = testConfig.value("EditText/rsls").toString().toInt();                    //轴流滚筒堵塞转速低报警设置值
+    int concaveclset = testConfig.value("EditText/concaveclset").toString().toInt();    //凹版间隙调节值
+    int ConcaveclClearanceSetMax = testConfig.value("EditText/ConcaveclClearanceSetMax").toString().toInt(); //凹板间隙上限
+    int ConcaveclClearanceSetMin = testConfig.value("EditText/ConcaveclClearanceSetMin").toString().toInt(); //凹板间隙下限
 
-//    qDebug()<<"StalkMoisture"<<StalkMoisture<<endl;
-//    qDebug()<<"CroppingIntensity"<<CroppingIntensity<<endl;
-//    qDebug()<<"GrassGrainRatio"<<GrassGrainRatio<<endl;
-//    qDebug()<<"PlantHeight"<<PlantHeight<<endl;
-//    qDebug()<<"AxialRollerSpeedMin"<<AxialRollerSpeedMin<<endl;
-//    qDebug()<<"AxialRollerSpeedMax"<<AxialRollerSpeedMax<<endl;
-//    qDebug()<<"le"<<le<<endl;
-//    qDebug()<<"pfh"<<pfh<<endl;
-//    qDebug()<<"cutx"<<cutx<<endl;
-//    qDebug()<<"cutn"<<cutn<<endl;
-//    qDebug()<<"rsls"<<rsls<<endl;
-//    qDebug()<<"concaveclset"<<concaveclset<<endl;
-//    qDebug()<<"ConcaveclClearanceSetMax"<<ConcaveclClearanceSetMax<<endl;
-//    qDebug()<<"ConcaveclClearanceSetMin"<<ConcaveclClearanceSetMin<<endl;
 
     ui->l_StalkMoisture->setText(QString("%1").arg(float(1.0*StalkMoisture/100)));  //茎干含水率设置值
     ui->l_CroppingIntensity->setText(QString("%1").arg(float(1.0*CroppingIntensity/100)));//作物密度设置值
@@ -444,5 +431,7 @@ void ControlSetting::resumeConfig()
     ui->l_concaveclset->setText(QString::number(concaveclset));    //凹版间隙调节值
     ui->l_ConcaveclSetMax->setText(QString::number(ConcaveclClearanceSetMax)); //凹板间隙上限
     ui->l_ConcaveclSetMin->setText(QString::number(ConcaveclClearanceSetMin)); //凹板间隙下限
+
+    return;
 
 }

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'controlsetting.h'
 **
-** Created: Sat Jul 27 10:36:48 2019
+** Created: Sat Jul 27 14:04:14 2019
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.4)
 **
 ** WARNING! All changes made in this file will be lost!
