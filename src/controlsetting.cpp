@@ -47,7 +47,7 @@ void ControlSetting::InitValue()
     timer_1000ms=new QTimer(this);
 
     //ini file
-    testConfig = new QSettings("config.ini",QSettings::IniFormat);
+    testConfig = new QSettings("/mnt/wecon/app/usr/bin/config.ini",QSettings::IniFormat);
 
 
     isSendValid = false;
