@@ -7,3 +7,7 @@
 １．can0 和　can1 的接收和发送数据函数的定义在can_recv_send.h和can_recv_send.cpp中定义
 ２．在thread.h和thraed.cpp中定义了两个线程分别用来负责can0和can1的接收数据
 ３．发送数据放在主线程中完成，在controlsetting.h和controlsetting.cpp中
+
+
+2019年7月27日
+１．添加了参数保存功能
