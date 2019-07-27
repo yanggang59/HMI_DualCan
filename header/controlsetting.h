@@ -5,6 +5,11 @@
 #include <QDebug>
 #include <QTimer>
 #include "can_recv_send.h"
+#include <QTime>
+#include <QDate>
+#include <QDateTime>
+#include "header/INIParser.h"
+
 
 namespace Ui {
 class ControlSetting;
@@ -36,6 +41,10 @@ private:
 
     void send_control_setting();
     void InitValue();
+
+    //save config and resume config using INI file
+    void saveConfig();
+    void resumeConfig();
 
 private slots:
     void setvalid();

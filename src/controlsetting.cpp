@@ -9,6 +9,7 @@ ControlSetting::ControlSetting(QWidget *parent) :
     this->setWindowFlags(Qt::WindowStaysOnTopHint);
 
     InitValue();
+
     send_control_setting();
 
     timer_500ms->start(500);
@@ -41,7 +42,6 @@ void ControlSetting::InitValue()
     }
 
     timer_500ms=new QTimer(this);
-
     timer_1000ms=new QTimer(this);
 
     isSendValid = false;
@@ -51,8 +51,9 @@ void ControlSetting::send_control_setting()
 {
     connect(ui->OK_btn,SIGNAL(clicked()),this,SLOT(setvalid()));
     connect(ui->Cancel_btn,SIGNAL(clicked()),this,SLOT(setinvalid()));
-    QObject::connect(timer_500ms,SIGNAL(timeout()),this,SLOT(sendPer500ms()));
-    QObject::connect(timer_1000ms,SIGNAL(timeout()),this,SLOT(sendPer1000ms()));
+
+    connect(timer_500ms,SIGNAL(timeout()),this,SLOT(sendPer500ms()));
+    connect(timer_1000ms,SIGNAL(timeout()),this,SLOT(sendPer1000ms()));
 }
 
 void ControlSetting::setvalid(){
@@ -93,8 +94,6 @@ void ControlSetting::setvalid(){
     if(ui->cbx_9->currentIndex() == 1)          arrctl5330[0] = 1;          //静音
     else if (ui->cbx_9->currentIndex() == 2)    arrctl5330[0] = 2;          //播放
     else                                        arrctl5330[0] = 0;          //无动作
-
-
     /*
      * added on 2019.4.5
     */
@@ -103,7 +102,7 @@ void ControlSetting::setvalid(){
     arrctl5330[2] = StalkMoisture/256;
 
     int CroppingIntensity = (int)(ui->l_CroppingIntensity->text().toFloat()*100);
-    arrctl5330[3] = CroppingIntensity%256;                                  //作物密度设置值
+    arrctl5330[3] = CroppingIntensity%256;                                 //作物密度设置值
     arrctl5330[4] = CroppingIntensity/256;
 
     int GrassGrainRatio = ui->l_GrassrGrainratio->text().toFloat();       //草谷比设置值
@@ -122,9 +121,12 @@ void ControlSetting::setvalid(){
     arrctl5430[2] = AxialRollerSpeedMax%256;
     arrctl5430[3] = AxialRollerSpeedMax/256;
 
-
+    /*
+     * added on 2019.4.3 18FF5530
+    */
     if(ui->cbx_heartbeat->currentIndex() == 0) arrctl5530[0] = 1;           //01:仪表在线
     else arrctl5530[0] = 0;                                                 //00:仪表掉线
+
 
 
     /*
@@ -209,7 +211,39 @@ void ControlSetting::sendPer1000ms()
     if(isSendValid)
     {
         can1_send(arrctl5430,0x18FF5430);
+        /*
+         * added on 2019.6.19 18FF5530
+        */
+        QTime current_time=QTime::currentTime();
+        int hour=current_time.hour();
+        int minute=current_time.minute();
+        int second=current_time.second();
+
+        QDate current_date=QDate::currentDate();
+        int year=current_date.year();
+        int month=current_date.month();
+        int day=current_date.day();
+
+        arrctl5530[1] = year%256;
+        arrctl5530[2] = year/256;
+        arrctl5530[3] = month;
+        arrctl5530[4] = day;
+        arrctl5530[5] = hour;
+        arrctl5530[6] = minute;
+        arrctl5530[7] = second;
+
         can1_send(arrctl5530,0x18FF5530);
     }
+}
+
+void ControlSetting::saveConfig()
+{
+
+
+}
+
+void ControlSetting::resumeConfig()
+{
+
 
 }

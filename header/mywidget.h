@@ -64,8 +64,6 @@ private slots:
     void FeedDog();
 
 
-
-
     void get_eng_ti_dis(int array[8]);
     void get_speed_data(int array[8]);
     void get_meter_distance(int array[8]);

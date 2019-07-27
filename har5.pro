@@ -23,7 +23,7 @@ HEADERS += header/can_recv_send.h \
            header/softkeylineedit.h \
            header/tachmeter.h \
            header/thread.h \
-           ./header/controlsetting.h
+           header/INIParser.h
 FORMS += forms/controlsetting.ui forms/mywidget.ui forms/parametersetting.ui
 SOURCES += src/can_recv_send.cpp \
            src/controlsetting.cpp \
@@ -39,7 +39,8 @@ SOURCES += src/can_recv_send.cpp \
            src/parametersetting.cpp \
            src/softkeylineedit.cpp \
            src/tachmeter.cpp \
-           src/thread.cpp
+           src/thread.cpp \
+           src/INIParser.cpp
 RESOURCES += src/image.qrc
 
 MOC_DIR=moc

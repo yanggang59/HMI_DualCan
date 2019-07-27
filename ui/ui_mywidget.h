@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mywidget.ui'
 **
-** Created: Tue May 14 22:28:33 2019
+** Created: Sun Jun 23 16:08:22 2019
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -681,11 +681,11 @@ public:
         tab->setObjectName(QString::fromUtf8("tab"));
         scrollArea = new QScrollArea(tab);
         scrollArea->setObjectName(QString::fromUtf8("scrollArea"));
-        scrollArea->setGeometry(QRect(490, 10, 181, 251));
+        scrollArea->setGeometry(QRect(490, 10, 191, 251));
         scrollArea->setWidgetResizable(true);
         scrollAreaWidgetContents = new QWidget();
         scrollAreaWidgetContents->setObjectName(QString::fromUtf8("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 179, 249));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 189, 249));
         label_96 = new QLabel(scrollAreaWidgetContents);
         label_96->setObjectName(QString::fromUtf8("label_96"));
         label_96->setGeometry(QRect(70, 160, 60, 33));
@@ -973,11 +973,11 @@ public:
         scrollArea_4->setWidget(scrollAreaWidgetContents_4);
         scrollArea_5 = new QScrollArea(tab);
         scrollArea_5->setObjectName(QString::fromUtf8("scrollArea_5"));
-        scrollArea_5->setGeometry(QRect(490, 265, 181, 131));
+        scrollArea_5->setGeometry(QRect(490, 265, 191, 131));
         scrollArea_5->setWidgetResizable(true);
         scrollAreaWidgetContents_5 = new QWidget();
         scrollAreaWidgetContents_5->setObjectName(QString::fromUtf8("scrollAreaWidgetContents_5"));
-        scrollAreaWidgetContents_5->setGeometry(QRect(0, 0, 179, 129));
+        scrollAreaWidgetContents_5->setGeometry(QRect(0, 0, 189, 129));
         water_rate = new QLabel(scrollAreaWidgetContents_5);
         water_rate->setObjectName(QString::fromUtf8("water_rate"));
         water_rate->setGeometry(QRect(60, 51, 80, 33));
@@ -1558,7 +1558,7 @@ public:
         label_55->setText(QString());
         grain_quality_monitor->setText(QApplication::translate("myWidget", "0", 0, QApplication::UnicodeUTF8));
         label_26->setText(QString());
-        label_100->setText(QApplication::translate("myWidget", "g", 0, QApplication::UnicodeUTF8));
+        label_100->setText(QApplication::translate("myWidget", "g/s", 0, QApplication::UnicodeUTF8));
         label_101->setText(QApplication::translate("myWidget", "%", 0, QApplication::UnicodeUTF8));
         label_99->setText(QApplication::translate("myWidget", "0", 0, QApplication::UnicodeUTF8));
         label_85->setText(QApplication::translate("myWidget", "0", 0, QApplication::UnicodeUTF8));

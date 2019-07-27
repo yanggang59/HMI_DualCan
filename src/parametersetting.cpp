@@ -76,11 +76,11 @@ void ParameterSetting::show_parameter()
         //18FF2817 ---23
         show2817(num_mon[23]);
 
-        //18FF2715 ---32
-        show2715(num_mon[32]);
+        //18FF2715 ---26   2019.6.18 modified
+        show2715(num_mon[26]);
 
-        //18FF2815 ---33
-        show2815(num_mon[33]);
+        //18FF2815 ---27
+        show2815(num_mon[27]);
 
 }
 
@@ -89,6 +89,9 @@ void ParameterSetting::show1405(int arr[8])
     cleanFanSpeedSetValue = arr[0] + arr[1]*256;
 
     ui->l_cleanFanSpeedTarget->setText(tr("%1").arg(cleanFanSpeedSetValue));
+
+    //1405 missing two
+
 }
 
 void ParameterSetting::show2615(int arr[8])
@@ -112,16 +115,15 @@ void ParameterSetting::show2817(int arr[8])
 
 void ParameterSetting::show2715(int arr[8])
 {
-    winderHydraulicMotorFlow = arr[0] + arr[1]*256;
-    feedingAugerHydraulicMotorFlow = arr[2] + arr[3]*256;
-    cutterHydraulicMotorFlow = arr[4] + arr[5]*256;
+    winderHydraulicMotorFlow = (arr[0] + arr[1]*256)/10;
+    feedingAugerHydraulicMotorFlow = (arr[2] + arr[3]*256)/10;
+    cutterHydraulicMotorFlow = (arr[4] + arr[5]*256)/10;
 
     winderSpeedSetValue = arr[6];
 
     ui->l_winderHydraulicMotorFlow->setText(tr("%1").arg(winderHydraulicMotorFlow/10));
     ui->l_feedingAugerHydraulicMotorFlow->setText(tr("%1").arg(feedingAugerHydraulicMotorFlow/10));
     ui->l_cutterHydraulicMotorFlow->setText(tr("%1").arg(cutterHydraulicMotorFlow/10));
-
     ui->l_winderSpeedTarget->setText(tr("%1").arg(winderSpeedSetValue));
 }
 

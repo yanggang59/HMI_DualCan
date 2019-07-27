@@ -1,5 +1,4 @@
 #include "can_recv_send.h"
-
 #include <QMutex>       //线程加锁保护
 
 QMutex mutex;

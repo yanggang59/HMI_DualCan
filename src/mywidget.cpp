@@ -358,7 +358,7 @@ void myWidget::get_speed_data(int array[8]){
     }
 }
 
-//米计里程
+//米计里程  0803
 void myWidget::get_meter_distance(int array[8]){
     /* 0x18FF0803,字节0-7
      * 字节0-3，单次行驶里程LL-HH,这里不显示
@@ -1028,6 +1028,7 @@ void myWidget::get_cut_width(int array[8]){
 
     if(CarSpeed >= 600)
         CarSpeed = 600;
+
     ui->widget_eng->setValue(CarSpeed/10);
 
     ui->label_95->setText(tr("%1").arg(CutwidthLeftvalue));
@@ -1163,7 +1164,7 @@ void myWidget::get_drum_speed(int array[8]){
      * 第4字节表示凹板间隙检测值
      * */
     AxialflowRollerSpeed = array[0] + (array[1] & 0x1f)*256;
-    AxialflowRollerTorque = array[2] + array[3] * 256;
+    AxialflowRollerTorque = (array[2] + array[3] * 256)/10;
     GravureGapvalue = array[4];
 
     qreal warning1  = (array[1] & 0xe0) >> 5;   //判断是否有报警

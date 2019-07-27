@@ -1401,7 +1401,7 @@ background-color: transparent;</string>
       <rect>
        <x>490</x>
        <y>10</y>
-       <width>181</width>
+       <width>191</width>
        <height>251</height>
       </rect>
      </property>
@@ -1413,7 +1413,7 @@ background-color: transparent;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>179</width>
+        <width>189</width>
         <height>249</height>
        </rect>
       </property>
@@ -2449,7 +2449,7 @@ background-color: transparent;</string>
       <rect>
        <x>490</x>
        <y>265</y>
-       <width>181</width>
+       <width>191</width>
        <height>131</height>
       </rect>
      </property>
@@ -2461,7 +2461,7 @@ background-color: transparent;</string>
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>179</width>
+        <width>189</width>
         <height>129</height>
        </rect>
       </property>
@@ -2539,7 +2539,7 @@ background-color: transparent;</string>
         </rect>
        </property>
        <property name="text">
-        <string>g</string>
+        <string>g/s</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_101">

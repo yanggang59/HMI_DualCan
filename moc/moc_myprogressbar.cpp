@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'myprogressbar.h'
 **
-** Created: Tue May 14 22:35:06 2019
+** Created: Wed Jun 19 23:48:39 2019
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.4)
 **
 ** WARNING! All changes made in this file will be lost!

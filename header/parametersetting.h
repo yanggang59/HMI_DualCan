@@ -75,6 +75,7 @@ private:
     qreal feedingAugerHydraulicMotorReturnOilPressure;   //喂入绞龙液压马达进油压力
     qreal cutterHydraulicMotorTakeOilPressure;           //割刀液压马达进油压力
     qreal cutterHydraulicMotorReturnOilPressure;         //割刀液压马达回油压力
+
     qreal cuttingPlatformHeight;                         //割台高度检测值
 
 
