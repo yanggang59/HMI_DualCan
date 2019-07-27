@@ -9,6 +9,7 @@
 #include <QDate>
 #include <QDateTime>
 #include "header/INIParser.h"
+#include <QSettings>
 
 
 namespace Ui {
@@ -36,6 +37,8 @@ private:
 
     QTimer *timer_500ms;      //500 ms timer
     QTimer *timer_1000ms;     //1000 ms timer
+
+    QSettings* testConfig;
 
     bool isSendValid;
 

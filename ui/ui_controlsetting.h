@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'controlsetting.ui'
 **
-** Created: Wed Jun 19 23:46:04 2019
+** Created: Sat Jul 27 10:36:28 2019
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
