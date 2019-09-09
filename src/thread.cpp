@@ -202,6 +202,7 @@ void Thread1::run()
               }
               SLEEP;
               break;
+
           case 0x98FF1607://粮食干重
              for(int j = 0; j < 8; j++)
              {

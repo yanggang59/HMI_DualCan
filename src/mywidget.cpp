@@ -785,12 +785,17 @@ void myWidget::get_water_rate(int array[8]){
      * */
 
     WaterRate = (array[0] + array[1]*256);
-    GrainflowQuality = array[2] + array[3]*256;
+
+   // GrainflowQuality = array[2] + array[3]*256;
+
     ProductionSquaremeter = (array[4] + array[5]*256);
+
     GrainWetweight = array[6] + array[7]*256;
 
     ui->water_rate->setText(tr("%1").arg(WaterRate/100));
-    ui->grain_quality_monitor->setText(tr("%1").arg(GrainflowQuality));
+
+    //ui->grain_quality_monitor->setText(tr("%1").arg(GrainflowQuality));
+
     ui->label_85->setText(tr("%1").arg(ProductionSquaremeter/1000));
     ui->weight_wet->setText(tr("%1").arg(GrainWetweight));
 }
@@ -803,7 +808,12 @@ void myWidget::get_weight_dry(int array[8]){
 
     GrainDryweight = (array[0] + array[1]*256);
 
+    //grain yield
+    GrainflowQuality = array[2] + array[3]*256;
+
     ui->weight_dry->setText(tr("%1").arg(GrainDryweight));
+
+    ui->grain_quality_monitor->setText(tr("%1").arg(GrainflowQuality));
 
 }
 

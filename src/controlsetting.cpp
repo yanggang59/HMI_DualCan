@@ -265,6 +265,7 @@ void ControlSetting::saveConfig()
     int grainkd;                                            //当前作物种类
     int isOnline;
 
+
     if(ui->cbx_4->currentIndex() == 1)          clear_meter = 1;            //清零
     else                                        clear_meter = 0;            //无动作
 
